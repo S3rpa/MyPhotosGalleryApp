@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRandomImagesData, getRandomImagesStatus, getRandomImagesError } from '../../features/images/imagesSlice';
 import { getRandomImagesThunk } from '../../features/images/imagesThunk';
+import { selectSearch } from '../../features/search/searchSlice';
 
 function Home() {
     const [isLoading, setIsLoading] = useState(false);
@@ -12,6 +13,7 @@ function Home() {
     const imagesStatus = useSelector(getRandomImagesStatus);
     const imagesData = useSelector(getRandomImagesData);
     const imagesError = useSelector(getRandomImagesError);
+    const searchTerm = useSelector(selectSearch);
 
     useEffect(() => {
         if (imagesStatus === 'idle') {
@@ -37,13 +39,17 @@ function Home() {
         }
     }, [imagesStatus, imagesData, imagesError, dispatch]);
 
+    const filteredImages = searchTerm
+    ? imageList.filter(image => 
+        image.alt.toLowerCase().includes(searchTerm.toLowerCase())) : imageList;
+
     return (
         <main>
             <div className='title'>
                 <h1>MyPhotosGallery</h1>
                 <img src="resources/Logo.png" alt="Logo" />
             </div>
-            {isLoading ? <h2 className='loading-label'>LOADING...</h2> : <ImgCard images={imageList} />}
+            {isLoading ? <h2 className='loading-label'>LOADING...</h2> : <ImgCard images={filteredImages} />}
         </main>
     );
 }
