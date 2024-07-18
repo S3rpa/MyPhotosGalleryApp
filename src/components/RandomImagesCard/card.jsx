@@ -1,4 +1,3 @@
-import './card.css';
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -14,13 +13,16 @@ export default function ImgCard({ images }) {
           <CardActionArea>
             <CardMedia
               component="img"
-              height="140"
+              height="180"
               image={image.source}
               alt={image.alt}
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 {image.alt || "Image"}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Likes: {image.likes}
               </Typography>
             </CardContent>
           </CardActionArea>
