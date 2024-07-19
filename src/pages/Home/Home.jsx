@@ -45,10 +45,6 @@ function Home() {
 
     return (
         <main>
-            <div className='title'>
-                <h1>MyPhotosGallery</h1>
-                <img src="resources/Logo.png" alt="Logo" />
-            </div>
             {isLoading ? <h2 className='loading-label'>LOADING...</h2> : <ImgCard images={filteredImages} />}
         </main>
     );
