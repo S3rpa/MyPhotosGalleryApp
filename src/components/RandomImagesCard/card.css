@@ -1,4 +1,4 @@
-  .image-gallery {
+.image-gallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -9,5 +9,12 @@
     margin: 0.625em;
     width: calc(33% - 1.25em);
     box-sizing: border-box;
+  }
+  
+  .heart {
+    color: red;
+    height: 1em;
+    display: inline-block;
+    font-size: 2.5em;
   }
   

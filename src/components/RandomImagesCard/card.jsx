@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import './card.css';
 
 export default function ImgCard({ images }) {
   return (
@@ -13,7 +14,7 @@ export default function ImgCard({ images }) {
           <CardActionArea>
             <CardMedia
               component="img"
-              height="180"
+              height="160"
               image={image.source}
               alt={image.alt}
             />
@@ -22,7 +23,7 @@ export default function ImgCard({ images }) {
                 {image.alt || "Image"}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Likes: {image.likes}
+               <span className='heart'>♥</span> Likes: {image.likes}
               </Typography>
             </CardContent>
           </CardActionArea>
