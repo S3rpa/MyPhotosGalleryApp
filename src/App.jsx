@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { store } from './app/store';
@@ -9,10 +8,12 @@ import Nav from '../src/components/Nav/Nav';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from '../src/pages/Home/Home';
 import { Provider } from 'react-redux';
-{/* import Albums from '../src/pages/Albums/Albums'; */}
+import Albums from '../src/pages/Albums/Albums';
+import { FavoritesProvider } from '../src/features/favs/favs'; 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
+    <FavoritesProvider>
       <BrowserRouter>
         <div className="app-container">
           <Title />
@@ -20,9 +21,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Nav />
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/albums" element={<Albums />} /> */}
+            <Route path="/albums" element={<Albums />} />
           </Routes>
         </div>
       </BrowserRouter>
-    </Provider>
-)
+    </FavoritesProvider>
+  </Provider>
+);

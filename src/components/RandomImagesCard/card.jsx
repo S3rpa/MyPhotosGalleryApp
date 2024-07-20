@@ -7,8 +7,13 @@ import { CardActionArea } from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import IconButton from '@mui/material/IconButton';
 import './card.css';
+import { useContext } from 'react';
+import { FavoritesContext } from '../../features/favs/favs';
+
 
 export default function ImgCard({ images }) {
+  const { addFavorite } = useContext(FavoritesContext);
+  
   return (
     <div className="image-gallery">
       {images.map((image) => (
@@ -24,6 +29,7 @@ export default function ImgCard({ images }) {
               <IconButton
                 className="star-icon"
                 aria-label={`star ${image.alt}`}
+                onClick={() => addFavorite(image)}
               >
                 <StarBorderIcon />
               </IconButton>
