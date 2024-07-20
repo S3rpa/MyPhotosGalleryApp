@@ -1,13 +1,30 @@
-  .image-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 1.25em;
-  }
-  
-  .image-card {
-    margin: 0.625em;
-    width: calc(33% - 1.25em);
-    box-sizing: border-box;
-  }
-  
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1.25em;
+  width: 100%;
+  min-height: 40em;
+}
+
+.image-card {
+  margin: 0.625em;
+  width: calc(33% - 1.25em);
+  box-sizing: border-box;
+}
+
+.loading-label, .no-results {
+  text-align: center;
+  font-size: 2em;
+  color: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40em;
+}
+
+.no-results {
+  font-size: 1.5em;
+}
