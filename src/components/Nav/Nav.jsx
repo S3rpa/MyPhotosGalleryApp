@@ -1,14 +1,17 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import './Nav.css'
+import './Nav.css';
 
 function Nav() {
   const [value, setValue] = React.useState('photos');
+  const navigate = useNavigate();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    navigate(newValue === 'albums' ? '/albums' : '/');
   };
 
   return (
