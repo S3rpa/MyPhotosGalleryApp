@@ -24,14 +24,15 @@
   top: -6.5em; 
   color: white;
   background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
   transition: color 0.3s ease;
 }
 
 .star-icon:hover {
   color: gold; 
 }
-
+.star-icon:focus {
+  outline: none;
+}
 .heart {
   color: red;
   height: 1em;
