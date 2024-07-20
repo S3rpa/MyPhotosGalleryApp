@@ -45,7 +45,9 @@ function Home() {
 
     return (
         <main>
-            {isLoading ? <h2 className='loading-label'>LOADING...</h2> : <ImgCard images={filteredImages} />}
+            {isLoading ? (<h2 className='loading-label'>LOADING...</h2>) 
+            : filteredImages.length > 0 ? (<ImgCard images={filteredImages} />) 
+            : (  <div className="no-results">No images found</div> )}
         </main>
     );
 }
