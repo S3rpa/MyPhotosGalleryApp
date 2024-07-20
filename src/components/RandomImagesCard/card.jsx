@@ -9,11 +9,18 @@ import IconButton from '@mui/material/IconButton';
 import './card.css';
 import { useContext } from 'react';
 import { FavoritesContext } from '../../features/favs/favs';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DownloadIcon from '@mui/icons-material/Download';
 
+export default function ImgCard({ images, onRemove, showRemoveAndDownload }) {
+  const { addFavorite, removeFavorite } = useContext(FavoritesContext);
 
-export default function ImgCard({ images }) {
-  const { addFavorite } = useContext(FavoritesContext);
-  
+  const handleRemove = (id) => {
+    removeFavorite(id);
+    if (onRemove) {
+      onRemove(id);
+    }
+  };
   return (
     <div className="image-gallery">
       {images.map((image) => (
@@ -26,18 +33,39 @@ export default function ImgCard({ images }) {
                 image={image.source}
                 alt={image.alt}
               />
-              <IconButton
-                className="star-icon"
-                aria-label={`star ${image.alt}`}
-                onClick={() => addFavorite(image)}
-              >
-                <StarBorderIcon />
-              </IconButton>
+              {!showRemoveAndDownload && (
+                <IconButton
+                  className="star-icon"
+                  aria-label={`star ${image.alt}`}
+                  onClick={() => addFavorite(image)}
+                >
+                  <StarBorderIcon />
+                </IconButton>
+              )}
             </div>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div" >
                 {image.alt || "Image"}
               </Typography>
+              {showRemoveAndDownload && (
+                <div className="remove-download">
+                  <IconButton
+                    className="remove-icon"
+                    aria-label={`remove ${image.alt}`}
+                    onClick={() => onRemove(image.id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                  <IconButton
+                    className="download-icon"
+                    aria-label={`download ${image.alt}`}
+                    href={image.source}
+                    download
+                  >
+                    <DownloadIcon />
+                  </IconButton>
+                </div>
+              )}
               <Typography variant="body2" color="text.secondary">
                 <span className='heart'>♥</span> Likes: {image.likes}
               </Typography>
