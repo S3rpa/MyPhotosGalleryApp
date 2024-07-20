@@ -1,20 +1,40 @@
 .image-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 1.25em;
-  }
-  
-  .image-card {
-    margin: 0.625em;
-    width: calc(33% - 1.25em);
-    box-sizing: border-box;
-  }
-  
-  .heart {
-    color: red;
-    height: 1em;
-    display: inline-block;
-    font-size: 2.5em;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1.25em;
+  width: 100%;
+  min-height: 40em;
+  box-sizing: border-box;
+}
+
+.image-card {
+  margin: 0.625em;
+  width: calc(33% - 1.25em);
+  box-sizing: border-box;
+}
+
+.card-media-container {
+  position: relative;
+}
+
+.star-icon {
+  position: absolute;
+  top: -6.5em; 
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  transition: color 0.3s ease;
+}
+
+.star-icon:hover {
+  color: gold; 
+}
+
+.heart {
+  color: red;
+  height: 1em;
+  display: inline-block;
+  font-size: 2.5em;
+}
