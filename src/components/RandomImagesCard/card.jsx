@@ -11,6 +11,7 @@ import { useContext } from 'react';
 import { FavoritesContext } from '../../features/favs/favs';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DownloadIcon from '@mui/icons-material/Download';
+import { saveAs } from 'file-saver';
 
 export default function ImgCard({ images, onRemove, showRemoveAndDownload }) {
   const { addFavorite, removeFavorite } = useContext(FavoritesContext);
@@ -21,6 +22,18 @@ export default function ImgCard({ images, onRemove, showRemoveAndDownload }) {
       onRemove(id);
     }
   };
+
+  const handleDownload = (url, alt) => {
+    if (url) {
+      // Abrir la imagen en una nueva pestaña
+      window.open(url, '_blank');
+      
+      saveAs(url, `${alt}.jpg`);
+    } else {
+      console.error('Download URL is undefined for image:', alt);
+    }
+  };
+
   return (
     <div className="image-gallery">
       {images.map((image) => (
@@ -37,7 +50,14 @@ export default function ImgCard({ images, onRemove, showRemoveAndDownload }) {
                 <IconButton
                   className="star-icon"
                   aria-label={`star ${image.alt}`}
-                  onClick={() => addFavorite(image)}
+                  onClick={() => {
+                    if (image.full) {
+                      addFavorite(image);
+                    } else {
+                      console.error('Full URL is not available for image:', image.alt);
+                    }
+                  }}
+                  
                 >
                   <StarBorderIcon />
                 </IconButton>
@@ -52,15 +72,15 @@ export default function ImgCard({ images, onRemove, showRemoveAndDownload }) {
                   <IconButton
                     className="remove-icon"
                     aria-label={`remove ${image.alt}`}
-                    onClick={() => onRemove(image.id)}
+                    onClick={() => handleRemove(image.id)}
                   >
                     <DeleteIcon />
                   </IconButton>
                   <IconButton
                     className="download-icon"
                     aria-label={`download ${image.alt}`}
-                    href={image.source}
-                    download
+                    onClick={() => handleDownload(image.full, image.alt)}
+                    disabled={!image.full}
                   >
                     <DownloadIcon />
                   </IconButton>
