@@ -24,8 +24,9 @@ function Home() {
             setIsLoading(false);
             console.log('Images data:', imagesData); 
             const data = imagesData.map((image, index) => ({
-                source: image.urls.regular,
-                alt: image.alt_description,
+                source: image.urls.regular || image.urls.small,
+                full: image.urls.full,
+                alt: image.alt_description || 'No description available',
                 id: image.id,
                 height: image.height,
                 width: image.width,

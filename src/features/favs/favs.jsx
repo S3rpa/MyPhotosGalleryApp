@@ -12,9 +12,9 @@ export const FavoritesProvider = ({ children }) => {
 
   const addFavorite = (image) => {
     if (!favorites.some(fav => fav.id === image.id)) {
-      const updatedFavorites = [...favorites, image];
-      setFavorites(updatedFavorites);
-      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+        const updatedFavorites = [...favorites, image];
+        setFavorites(updatedFavorites);
+        localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     }
   };
   
