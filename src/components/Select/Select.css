@@ -1,0 +1,33 @@
+.select-box {
+    width: 15em;
+    margin-left: 2em;
+    margin-top: 2em;
+    color: white;
+  }
+  .select-form-control {
+    background-color: white;
+  }
+  
+  .select-label {
+    color: white;
+  }
+  
+  .select {
+    color: white;
+  }
+  .select .MuiOutlinedInput-notchedOutline {
+    border-color: white;
+  }
+  
+  .select .MuiSvgIcon-root {
+    color: white;
+  }
+  
+  .select-menu .MuiMenu-paper {
+    background-color: gray;
+    color: white;
+  }
+  
+  .select-menu .MuiMenuItem-root.Mui-selected {
+    background-color: #555;
+  }
