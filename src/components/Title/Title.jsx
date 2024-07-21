@@ -5,8 +5,8 @@ export const Title = () => {
 
     return (
         
-        <div className='title'>
-            <h1>MyPhotosGallery<img src="resources/Logo.png" alt="Logo" /></h1> 
+        <div className='title-container'>
+            <h1 className='title'>MyPhotosGallery</h1> <img src="resources/Logo.png" alt="Logo" />
         </div>
             
     )

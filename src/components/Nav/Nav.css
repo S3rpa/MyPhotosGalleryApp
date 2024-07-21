@@ -1,6 +1,14 @@
 .nav-container {
-    width: 100%;
-    margin-top: 2em;
-    margin-left: 14em; 
-  }
-  
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  z-index: 1000;
+  padding: 0.5em 0;
+}
+
+.nav-tabs {
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
