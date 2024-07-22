@@ -13,32 +13,25 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DownloadIcon from '@mui/icons-material/Download';
 import { saveAs } from 'file-saver';
 
-export default function ImgCard({ images, onRemove, showRemoveAndDownload }) {
-  const { addFavorite, removeFavorite } = useContext(FavoritesContext);
+export default function ImgCard({ images, onImageClick, onRemove, showRemoveAndDownload }) {
+  const { addFavorite } = useContext(FavoritesContext);
 
   const handleRemove = (id) => {
-    removeFavorite(id);
     if (onRemove) {
       onRemove(id);
     }
   };
 
   const handleDownload = (url, alt) => {
-    if (url) {
-      // Abrir la imagen en una nueva pestaña
-      window.open(url, '_blank');
-      
-      saveAs(url, `${alt}.jpg`);
-    } else {
-      console.error('Download URL is undefined for image:', alt);
-    }
+    saveAs(url, `${alt}.jpg`);
+    window.open(url, '_blank');
   };
 
   return (
     <div className="image-gallery">
       {images.map((image) => (
         <Card key={image.id} sx={{ maxWidth: 345, margin: 2 }} className="image-card">
-          <CardActionArea>
+          <CardActionArea onClick={() => onImageClick(image)}>
             <div className="card-media-container">
               <CardMedia
                 component="img"
@@ -50,21 +43,17 @@ export default function ImgCard({ images, onRemove, showRemoveAndDownload }) {
                 <IconButton
                   className="star-icon"
                   aria-label={`star ${image.alt}`}
-                  onClick={() => {
-                    if (image.full) {
-                      addFavorite(image);
-                    } else {
-                      console.error('Full URL is not available for image:', image.alt);
-                    }
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addFavorite(image);
                   }}
-                  
                 >
                   <StarBorderIcon />
                 </IconButton>
               )}
             </div>
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div" >
+              <Typography gutterBottom variant="h5" component="div">
                 {image.alt || "Image"}
               </Typography>
               {showRemoveAndDownload && (
@@ -72,15 +61,20 @@ export default function ImgCard({ images, onRemove, showRemoveAndDownload }) {
                   <IconButton
                     className="remove-icon"
                     aria-label={`remove ${image.alt}`}
-                    onClick={() => handleRemove(image.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRemove(image.id);
+                    }}
                   >
                     <DeleteIcon />
                   </IconButton>
                   <IconButton
                     className="download-icon"
                     aria-label={`download ${image.alt}`}
-                    onClick={() => handleDownload(image.full, image.alt)}
-                    disabled={!image.full}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDownload(image.urls.full, image.alt);
+                    }}
                   >
                     <DownloadIcon />
                   </IconButton>
