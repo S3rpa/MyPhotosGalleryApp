@@ -3,7 +3,21 @@
   align-items: center;
   justify-content: center;
   gap: 1em;
-  color: white;
+  color: rgb(182, 229, 73);
+  backdrop-filter: blur(5px);
+  position: sticky;
+  top:0;
+  animation: adjust-header liner both;
+  animation-timeline: scroll();
+  animation-range: 0 200px;
+  z-index: 100;
+}
+@keyframes adjust-header {
+  to {
+    background: rgba(0, 0, 0, .3);
+    font-size: 12px;
+    height: 24px;
+  }
 }
 
 .title {
@@ -15,6 +29,7 @@
   width: 6.25em;
   margin-left: 1em;
   height: 1.3em;
+  color: violet;
 }
 
 @media (min-width: 1000px) {
