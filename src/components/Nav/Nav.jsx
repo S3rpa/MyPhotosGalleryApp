@@ -23,8 +23,8 @@ function Nav() {
         indicatorColor="secondary"
         aria-label="secondary tabs example"
       >
-        <Tab value="photos" label="Photos" />
-        <Tab value="albums" label="Albums" />
+        <Tab className="tabs" value="photos" label="Photos" />
+        <Tab className="tabs" value="albums" label="Albums" />
       </Tabs>
     </Box>
   );
